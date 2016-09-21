@@ -7,6 +7,9 @@
     "type": "git",
     "url": "(https://github.com/shrutitanwar/Hashnode.git)"
   },
+  "scripts": {
+    "start": "node server.js"
+  },
   "author": "Shruti Tanwar <shruti.tanwar93@gmail.com>",
   "dependencies": {
     "body-parser": "^1.15.0",
