@@ -1,11 +1,19 @@
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var movies = require('./routes/movies'); //routes are defined here
+var fs = require('fs');
+var path    = require("path");
+var movies = require('./routes/comments.route.js'); //routes are defined here
 var app = express(); //Create the Express app
 
-app.listen(config.port || 3000);
-module.exports = app;
-console.log('Server running at http://localhost:' + config.port);
+//var app = require('../app'); //Require our app
+
+app.set('port', process.env.PORT || 8000);
+
+var server = app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + server.address().port);
+});
+
+app.get('/',function(req,res){  
+     res.sendFile(path.join(__dirname+'/comment_form.html'));
+});
