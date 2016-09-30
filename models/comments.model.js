@@ -3,12 +3,14 @@ var Schema=mongoose.Schema;
 
 var commentsSchema = new Schema({
   	email: {
-  		type: String,
-  		required: true
+  		type: String
   	},
-  	comment: {
+  	name :{
+  		type: String
+  	},
+  	comments: {
   		type: String
   	}
-}, {timestamps: true });
+}, {strict:false}, {timestamps: true });
 
 module.exports = mongoose.model('Comments', commentsSchema);

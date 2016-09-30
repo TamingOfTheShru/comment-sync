@@ -1,5 +1,5 @@
 {
-  "name": "Hashnode",
+  "name": "myproject",
   "version": "1.0.0",
   "description": "Real time comment syncing",
   "main": "server.js",
@@ -20,6 +20,7 @@
     "node-gcm": "^0.14.4",
     "q": "^1.4.1",
     "querystring": "^0.2.0",
-    "fs": "*"
+    "fs": "*",
+    "jquery": "^3.1.1"
   }
 }
