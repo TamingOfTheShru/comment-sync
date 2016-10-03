@@ -14,6 +14,8 @@ app.set('port', process.env.PORT || 8000);
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(express.static('./'));
+
 mongoose.connect('mongodb://localhost/test');
 
 var server = app.listen(app.get('port'), function() {
@@ -24,8 +26,7 @@ app.get('/',function(req,res){
      res.sendFile(path.join(__dirname+'/comment_form.html'));
 });
 
-
-app.post('/submit',function(req,res){  
-    controller.getData(req,res)
+app.post('/saveData',function(req,res){  
+    controller.saveData(req,res)
 });
 

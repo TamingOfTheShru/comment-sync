@@ -5,10 +5,10 @@ var commentsSchema = new Schema({
   	email: {
   		type: String
   	},
-  	name :{
+  	comments: {
   		type: String
   	},
-  	comments: {
+  	diff :{
   		type: String
   	}
 }, {strict:false}, {timestamps: true });
