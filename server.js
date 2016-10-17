@@ -29,7 +29,8 @@ app.post('/saveData', function(req, res) {
 });
 
 app.get('/fetchData', function(req, res) {
-    Comments.findOne({ email: req.body.email }, function(err, doc) {
+    console.log(req.query);
+    Comments.findOne({ email: req.query.email }, function(err, doc) {
         if (err) {
         	console.log(err);
         } else {
