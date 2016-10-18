@@ -1,13 +1,26 @@
  var typingTimer; //timer identifier
  var doneTypingInterval = 1000; //time in ms
  var oldComment = "";
+ var $ = require('jquery');
  var $input = $('#comments');
+ var dmpmod = require('diff_match_patch');
+ var dmp = new dmpmod.diff_match_patch();
+
 
  var GetDiff = function(oldValue, newValue) {
-     var diff = newValue;
-     console.log("upload Comments : " + diff);
-
-     return newValue;
+     console.log("old:" + oldValue);
+     console.log("new :" + newValue);
+     var diffs = dmp.diff_main(oldValue, newValue);
+     dmp.diff_cleanupSemantic(diffs);
+     var value = "";
+     console.log("Diffs " + diffs);
+     diffs.forEach(function(diff) {
+         if (diff[0] != 0) {
+             console.log(diff[0] + " " + diff[1]);
+             value = value + " " + diff[1];
+         }
+     });
+     return value;
  };
 
  //on keyup, start the countdown
@@ -22,14 +35,14 @@
  });
 
  //user is "finished typing," save data
-
  function doneTyping() {
      var comment = $input.val();
      var diff = GetDiff(oldComment, comment);
-     oldComment = comment;
+     if(oldComment == ""){
+        oldComment = diff;
+     }
      var email = $('#email').val();
-     console.log(email);
-     var data = { comments: comment, email: email };
+     var data = { diff: diff, email: email };
 
      $.ajax({
          dataType: "json",
@@ -52,6 +65,7 @@
 
  function assignData(response) {
      console.log(response.comment);
-     $input.val(response.comment);
+     $input.val(response.comment + response.diff);
+     oldComment = response.comment + response.diff;
      $('#email').val(response.email);
  }

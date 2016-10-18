@@ -29,16 +29,26 @@ app.post('/saveData', function(req, res) {
 });
 
 app.get('/fetchData', function(req, res) {
-    console.log(req.query);
-    Comments.findOne({ email: req.query.email }, function(err, doc) {
+    var email = req.query.email;
+    Comments.findOne({ email: email }, function(err, doc) {
         if (err) {
-        	console.log(err);
+            console.log(err);
         } else {
-        	var result = {
-        		"comment" : doc.comments,
-        		"diff" : doc.diff
-        	}
-        	res.send(result);
+            if (doc != null) {
+                var result = {
+                    "email": email,
+                    "comment": doc.comments,
+                    "diff": doc.diff
+                }
+                res.send(result);
+            } else {
+                var result = {
+                    "email": email,
+                    "comment": "",
+                    "diff": ""
+                }
+                res.send(result);
+            }
         }
     })
 })

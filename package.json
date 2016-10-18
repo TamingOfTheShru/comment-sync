@@ -8,19 +8,20 @@
     "url": "(https://github.com/shrutitanwar/Hashnode.git)"
   },
   "scripts": {
-    "start": "node server.js"
+    "build": "browserify comment_sync.js -o bundle.js"
   },
   "author": "Shruti Tanwar <shruti.tanwar93@gmail.com>",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "browserify": "^13.1.0",
     "express": "^4.13.4",
     "express-mung": "^0.4.2",
     "express-session": "^1.13.0",
+    "fs": "*",
+    "jquery": "^3.1.1",
     "mongoose": "^4.4.12",
     "node-gcm": "^0.14.4",
     "q": "^1.4.1",
-    "querystring": "^0.2.0",
-    "fs": "*",
-    "jquery": "^3.1.1"
+    "querystring": "^0.2.0"
   }
 }
